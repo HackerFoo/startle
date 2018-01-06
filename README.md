@@ -15,7 +15,7 @@ Library features include:
 Makefile features include:
 
 * Automatic dependency handling
-* Integration with `makeheaders` to automatically generate and update headers for .c files
+* Integration with [`makeheaders`](https://www.hwaci.com/sw/mkhdr) to automatically generate and update headers for .c files
 * Simple code generation: Collect macro-like annotations into lists for x-macros
   - Used for: Unit tests, handling commands and flags
   
