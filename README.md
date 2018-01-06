@@ -19,5 +19,7 @@ Makefile features include:
 * Simple code generation: Collect macro-like annotations into lists for x-macros
   - Used for: Unit tests, handling commands and flags
   
+See the [example program](https://github.com/HackerFoo/startle_example) to get started.
+
 Startle was originally developed as part of [PoprC](https://github.com/HackerFoo/poprc).
 
