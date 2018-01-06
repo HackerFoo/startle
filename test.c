@@ -27,6 +27,10 @@
 #include "startle/test.h"
 #include "startle/log.h"
 
+/** @file
+ *  @brief Unit testing
+ */
+
 #define TEST_ITEM(name) extern int test_##name();
 #include "test_list.h"
 #undef TEST_ITEM
@@ -43,6 +47,7 @@ pair_t tests[] = {
 
 #undef TEST_ITEM
 
+/** Run all tests matching the name. */
 int run_test(seg_t name) {
   int fail = 0;
   FOREACH(i, tests) {
@@ -62,6 +67,7 @@ int run_test(seg_t name) {
 // Macro tests
 
 TEST(loops) {
+  /** [loops] */
   COUNTUP(i, 3) {
     printf("up: %d\n", (unsigned int)i);
   }
@@ -85,9 +91,11 @@ TEST(loops) {
     }
     putchar('\n');
   }
+  /** [loops] */
   return 0;
 }
 
+/** [macro_dispatch] */
 #define TEST_0() printf("TEST_0()\n")
 #define TEST_1(x0) printf("TEST_1(" x0 ")\n")
 #define TEST_2(x0, x1) printf("TEST_2(" x0 ", " x1 ")\n")
@@ -98,3 +106,4 @@ TEST(macro_dispatch) {
   DISPATCH(TEST, "1", "2");
   return 0;
 }
+/** [macro_dispatch] */
