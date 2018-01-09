@@ -1,7 +1,7 @@
 Startle Library
 ===============
 
-Startle is a library of useful and efficient algorithms and facilities for developing C programs.
+[Startle](https://github.com/HackerFoo/startle) is a library of useful and efficient algorithms and facilities for developing C programs.
 
 Library features include:
 
@@ -18,8 +18,9 @@ Makefile features include:
 * Integration with [`makeheaders`](https://www.hwaci.com/sw/mkhdr) to automatically generate and update headers for .c files
 * Simple code generation: Collect macro-like annotations into lists for x-macros
   - Used for: Unit tests, handling commands and flags
-  
+
+Documentation can be found [here](https://hackerfoo.github.io/startle-docs/).
+
 See the [example program](https://github.com/HackerFoo/startle_example) to get started.
 
 Startle was originally developed as part of [PoprC](https://github.com/HackerFoo/poprc).
-
