@@ -353,6 +353,7 @@ bool _map_insert(map_t map, pair_t x, cmp_t cmp) {
 
 /** Insert an entry into a map.
  * O(log n) average time, up to O(n).
+ * @return true if inserted
  * @snippet map.c map
  */
 bool map_insert(map_t map, pair_t x) {
