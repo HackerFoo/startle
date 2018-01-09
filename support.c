@@ -283,13 +283,20 @@ seg_t seg_after(seg_t s, char c) {
   return s;
 }
 
+/** Create a string segment from a C string. */
+seg_t string_seg(const char *str) {
+  seg_t seg = {str, strlen(str)};
+  return seg;
+}
+
 /** Look up the string segment key in a sorted table.
- * Each row starts with a string pointer key.
+ * Each row starts with a C string key.
  * Binary search, O(log n) time.
  * @param table the table
  * @param width width of each row in bytes
  * @param rows the number of rows
  * @param key_seg the key string segment
+ * @snippet support.c lookup
  */
 void *lookup(void *table, size_t width, size_t rows, seg_t key_seg) {
   size_t low = 0, high = rows, pivot;
@@ -311,8 +318,38 @@ void *lookup(void *table, size_t width, size_t rows, seg_t key_seg) {
   return ret;
 }
 
+TEST(lookup) {
+  /** [lookup] */
+  struct row {
+    char name[8]; // must be large enough for the key and terminating null byte
+    int count;
+    double cost_per;
+  };
+
+  /* The rows must be sorted by the key. */
+  struct row table[] = {
+    { "apple", 3, 0.95 },
+    { "grape", 5, 0.50 },
+    { "pear", 2, 1.50 }
+  };
+
+  struct row *result = lookup(table, WIDTH(table), LENGTH(table), string_seg("grape"));
+  if(result) {
+    printf("The total for %d %ss at $%.2f each is $%.2f.\n",
+           result->count,
+           result->name,
+           result->cost_per,
+           result->count * result->cost_per);
+    return 0;
+  } else {
+    printf("Sorry, we don't have any of that.\n");
+    return -1;
+  }
+  /** [lookup] */
+}
+
 /** Look up the string segment key in an unsorted table.
- * Each row starts with a string pointer key.
+ * Each row starts with a C string key.
  * Linear search, O(n) time.
  * @param table the table
  * @param width width of each row in bytes
